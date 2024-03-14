@@ -1,0 +1,92 @@
+openapi: 3.0.1
+info:
+  title: Club API
+  version: 1.0.0
+tags:
+  - name: club
+paths:
+  /clubs:
+    get:
+      tags:
+        - club
+      summary: Get all clubs
+      operationId: getAllClubs
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ClubModel'
+
+components:
+  schemas:
+    ClubModel:
+      type: object
+      properties:
+        id:
+          type: integer
+        nom:
+          type: string
+        description:
+          type: string
+        longitude:
+          type: string
+        latitude:
+          type: string
+        adresse:
+          type: string
+        telephone:
+          type: string
+        image:
+          type: string
+        types:
+          type: array
+          items:
+            type: string
+        events:
+          type: array
+          items:
+            $ref: '#/components/schemas/EventModel'
+        reviews:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReviewModel'
+        users:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserModel'
+
+    EventModel:
+      type: object
+      properties:
+        id:
+          type: integer
+        dateAndTime:
+          type: string
+        location:
+          type: string
+        name:
+          type: string
+
+    ReviewModel:
+      type: object
+      properties:
+        idCommentaire:
+          type: integer
+        note:
+          type: integer
+        commentaire:
+          type: string
+
+    UserModel:
+      type: object
+      properties:
+        id:
+          type: integer
+        username:
+          type: string
+        email:
+          type: string
